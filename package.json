@@ -1,0 +1,19 @@
+{
+  "name": "bailysinquiry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "json-parser": "^3.1.2",
+    "mongodb": "^3.3.0-beta2",
+    "nodemailer": "^6.3.0",
+    "promise": "^8.0.3",
+    "request": "^2.88.0"
+  }
+}
