@@ -5,29 +5,35 @@
 */
 
 const nodemailer = require("nodemailer");
+const Promise = require("promise");
 const fs = require("fs");
 const env = "./pass.env"; //path to the env file.
 let pass = undefined;
 
 //load up the env password to link gmail.
-const load = async (path) => {
-	let pass = undefined;
+const load = (path) => {
+	console.log("loading password");
+	let dfd = new Promise((resolve, reject) => {
 
-	await fs.readFile(path, (err, data) => {
-		if(err) {
-			throw err;
-		}
+		fs.readFile(path, {encoding: "utf-8"}, (err, pass) => {
+			if(err) {
+				throw err;
+			}
 
-		pass = data;		
+			resolve(pass);
+		});
+
 	});
+	
 
-	return pass;
+	return dfd;
 };
 
 //handles the actual mailing process...
 const mailer = async (message) => {
 
 	let pass = await load(env); //get the password...
+	console.log("mailer pass:", pass);
 
 	const transporter = nodemailer.createTransport({
 		service: "Gmail",
