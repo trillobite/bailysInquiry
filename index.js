@@ -3,9 +3,12 @@ const Promise = require("promise");
 const request = require("request");
 const bodyParser = require("body-parser");
 const mailer = require("./mailer.js");
+const cors = require("cors");
 const port = 1984;
 
 const app = express();
+
+app.use(cors());
 
 const jsonParser = bodyParser.json();
 
