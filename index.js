@@ -51,4 +51,5 @@ app.delete("/inquiry/:id", jsonParser, (req, res) => {
 	//delete the recent inquiry...
 }); 
 
+console.log(`listening... ${port}`);
 app.listen(port);

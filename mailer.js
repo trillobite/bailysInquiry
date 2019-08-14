@@ -8,7 +8,6 @@ const nodemailer = require("nodemailer");
 const Promise = require("promise");
 const fs = require("fs");
 const env = "./pass.env"; //path to the env file.
-let pass = undefined;
 
 //load up the env password to link gmail.
 const load = (path) => {
@@ -49,14 +48,17 @@ const mailer = async (message) => {
 		text: message,
 	};
 
-	transporter.sendMail(mailOptions, (err, res) => {
+	let result = undefined;
+	await transporter.sendMail(mailOptions, (err, res) => {
 		if(err) {
-			console.log(err);
+			result = err;
 		} else {
+			result = res.response;
 			console.log("Message sent:", res.response);
 		}
 	});
 
+	return result;
 };
 
 module.exports = mailer;
