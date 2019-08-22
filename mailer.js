@@ -48,6 +48,10 @@ const mailer = async (message) => {
 		text: message,
 	};
 
+	if(message.name == "test") {
+		mailOptions.to = "jesse@baily.com"; //send test emails to the developer.
+	}
+
 	let result = undefined;
 	await transporter.sendMail(mailOptions, (err, res) => {
 		if(err) {
